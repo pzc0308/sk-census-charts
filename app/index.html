@@ -1,26 +1,47 @@
 <!doctype html>
 <html ng-app="app">
 
-    <head>
-        <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-        <!-- endbower -->
+<head>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <!-- endbower -->
 
-        <!-- inject:css -->
-        <!-- endinject -->
-    </head>
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
 
-    <body ng-controller="ChartsController as chartsCtrl">
+<body ng-controller="ChartsController as chartsCtrl">
 
-        <div class='container'>
-          <div class='jumbotron'>
-            <h1>The State of the United States</h1>
-            <p class='lead'>See census data from 2007-2015</p>
+  <div class='container'>
+    <div class='jumbotron'>
+      <h1>The State of the United States</h1>
+      <p class='lead'>See census data from 2007-2015</p>
+    </div>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-3'>
+          <ul class='list-group'>
+            <li class='list-group-item' ng-repeat="chart in chartsCtrl.charts">
+              <input type='text' class='form-control' ng-model='chart.name'/>
+              <input type='text' class='form-control' ng-model='chart.key'/>
+            </li>
+          </ul>
+          <button class="btn btn-primary" ng-click="chartsCtrl.refresh()">Refresh</button>
+        </div>
+        <div class='col-md-8'>
+          <div class='row'>
+            <div class='col-md-4' ng-repeat="chart in chartsCtrl.charts">
+              <h2>{{chart.name}}</h2>
+              <canvas id="line" class='chart chart-line' chart-data='chart.data' chart-labels="chart.labels"></canvas>
+            </div>
           </div>
-
-          <!-- STEP 6 - BUILDING THE UI -->
-          <!--
+        </div>
+      </div>
+    </div>
+    <!-- STEP 6 - BUILDING THE UI -->
+    <!--
           I have setup most of the page and Gulp stuff for you. Your job is to
           build the grid of charts as shown in the example image.
 
@@ -76,21 +97,21 @@
 
            -->
 
-        </div>
+  </div>
 
-        <!-- bower:js -->
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/chart.js/dist/Chart.js"></script>
-        <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-        <!-- endbower -->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/chart.js/dist/Chart.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <!-- endbower -->
 
-        <!-- inject:js -->
-        <script src="app.module.js"></script>
-        <script src="charts/charts.controller.js"></script>
-        <script src="charts/inqstats.factory.js"></script>
-        <!-- endinject -->
-    </body>
+  <!-- inject:js -->
+  <script src="app.module.js"></script>
+  <script src="charts/charts.controller.js"></script>
+  <script src="charts/inqstats.factory.js"></script>
+  <!-- endinject -->
+</body>
 
 </html>

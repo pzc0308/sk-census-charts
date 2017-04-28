@@ -24,5 +24,5 @@
 
   angular
     .module('app', ['chart.js'])
-    .value('inqstatsApiKey', '');
+    .value('inqstatsApiKey', 'a63bf05f3a195cc8');
 })();
